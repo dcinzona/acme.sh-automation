@@ -1,0 +1,4 @@
+deploy
+*.jks
+*.pfx
+*.p12
