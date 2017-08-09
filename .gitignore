@@ -2,3 +2,4 @@ deploy
 *.jks
 *.pfx
 *.p12
+*.json

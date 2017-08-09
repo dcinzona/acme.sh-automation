@@ -1,8 +1,11 @@
 #!/bin/bash
 
+# Load TickTick for JSON processing
+# https://github.com/kristopolous/TickTick
+. vendor/ticktick.sh
 
-# Get your API key from https://www.cloudflare.com/a/profile
 
+# Get your Cloudflare API key from https://www.cloudflare.com/a/profile
 export CF_Key="$CF_API_KEY"
 export CF_Email="$CF_API_EMAIL"
 
@@ -165,16 +168,22 @@ main() {
 }
 
 showhelp() {
-    echo "
+  example=`cat jsonexample.json`
+  echo "
 Usage: gencert.sh  command ...[parameters]....
 
 Commands:
-  --help, -h               Show this help message.
-  --cfkey                  Set your Cloudflare API key *REQUIRED
-  --cfemail                Set your Cloudflare API email *REQUIRED
-  --primary-domain         The primary domain used to generate certs *REQUIRED
-  --alternates             Comma separated list of domains to grab in addition to the primary-domain 
-  --run, -r                Disables --staging and --force flags and runs on production "
+  --help, -h              Show this help message.
+  --cfkey                 Set your Cloudflare API key *REQUIRED
+  --cfemail               Set your Cloudflare API email *REQUIRED
+  --primary-domain        The primary domain used to generate certs *REQUIRED
+  --alternates            Comma separated list of domains to grab in addition to the primary-domain
+  --json, -j              File path containing JSON file with config settings 
+  --run, -r               Disables --staging and --force flags and runs on production 
+  
+JSON Example:
+  $example
+  "
 }
 
 _normal() {

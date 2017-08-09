@@ -1,0 +1,22 @@
+{
+    "cfkey": "my-api-key",
+    "cfemail": "me@example.com",
+    "domains": [
+        {
+            "primary": "example.com",
+            "alternates": [
+                "sub1.example.com",
+                "sub2.example.com"
+            ]
+        },
+        {
+            "cfkey": "my-api-key",
+            "cfemail": "me@example.com",
+            "primary": "example2.com",
+            "alternates": [
+                "sub1.example2.com",
+                "sub2.example2.com"
+            ]
+        }
+    ]
+}
