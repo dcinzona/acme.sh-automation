@@ -12,6 +12,7 @@ export CF_Email="$CF_API_EMAIL"
 DIR=`pwd`
 PASSWD=$(openssl rand -base64 32)
 RUN='--staging --force'
+FORCE=''
 
 _startswith() {
   _str="$1"
@@ -35,7 +36,7 @@ _issue(){
         --key-file       "$CERTPATH/$PRIMARY_DOMAIN.key" \
         --ca-file        "$CERTPATH/$PRIMARY_DOMAIN.ca.cer" \
         --fullchain-file "$FULLCHAIN" \
-        $RUN
+        $RUN $FORCE
     _genPKCS12
 }
 
@@ -78,6 +79,10 @@ _process(){
         ;;
       --run | -r)
         RUN=""
+        shift
+        ;;
+      --force | -f)
+        FORCE="--force"
         shift
         ;;
       --cfemail)
@@ -179,7 +184,8 @@ Commands:
   --primary-domain        The primary domain used to generate certs *REQUIRED
   --alternates            Comma separated list of domains to grab in addition to the primary-domain
   --json, -j              File path containing JSON file with config settings 
-  --run, -r               Disables --staging and --force flags and runs on production 
+  --run, -r               Disables --staging and --force flags and runs on production
+  --force, -f             Sets the --force flag.  Use with --run to force renewal
   
 JSON Example:
   $example
